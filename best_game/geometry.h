@@ -4,24 +4,34 @@ template <typename T>
 class Point2D
 {
 public:
-    Point2D(T _x, T _y) : x(_x), y(_y){}
+    Point2D() = default;
+    Point2D(Point2D const & obj);
+    Point2D(T _x, T _y);
+    // TODO constructor initializer list
+    T & x();
+    T & y();
+    T const & x() const;
+    T const & y() const;
+    Point2D operator + (Point2D const & obj) const;
 private:
-    T x, y;
+    T m_x, m_y;
 };
+
 template <typename T>
 class Box2D
 {
 public:
     Box2D(Point2D<T> p1, Point2D<T> p2)
     {
-        point1.x = min(p1.x, p2.x);
-        point1.y = min(p1.y, p2.y);
-        point2.x = max(p1.x, p2.x);
-        point2.y = max(p1.y, p2.y);
+        point1.m_x = min(p1.m_x, p2.m_x);
+        point1.m_y = min(p1.m_y, p2.m_y);
+        point2.m_x = max(p1.m_x, p2.m_x);
+        point2.m_y = max(p1.m_y, p2.m_y);
     }
 
     Point2D<T> point1, point2;
 };
+
 template <typename T>
 class Ray2D
 {
@@ -32,16 +42,16 @@ public:
 template <typename T>
 bool PointInBox(Point2D<T> &p, Box2D<T> &b)
 {
-    return b.point1.x <= p.x && p.x <= b.point2.x &&
-            b.point1.y <= p.y && p.y <= b.point2.y;
+    return b.point1.m_x <= p.m_x && p.m_x <= b.point2.m_x &&
+            b.point1.m_y <= p.m_y && p.m_y <= b.point2.m_y;
 }
 
 template <typename T>
 bool CrossBoxes(Box2D<T> &b1, Box2D<T> &b2)
 {
     return PointInBox(b1.point1, b2) || PointInBox(b1.point2, b2) ||
-            PointInBox(Point2D<T>(b1.point1.x, b1.point2.y), b2) ||
-            PointInBox(Point2D<T>(b1.point2.x, b1.point1.y), b2);
+            PointInBox(Point2D<T>(b1.point1.m_x, b1.point2.m_y), b2) ||
+            PointInBox(Point2D<T>(b1.point2.m_x, b1.point1.m_y), b2);
 }
 
 template <typename T>
