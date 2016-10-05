@@ -5,16 +5,27 @@ class Point2D
 {
 public:
     Point2D() = default;
-    Point2D(Point2D const & obj);
+    Point2D(Point2D const &obj);
     Point2D(T _x, T _y);
     // TODO constructor initializer list
-    T & x();
-    T & y();
-    T const & x() const;
-    T const & y() const;
-    Point2D operator + (Point2D const & obj) const;
+    T &x();
+    T &y();
+    T const &x() const;
+    T const &y() const;
+    Point2D operator + (Point2D const &obj) const;
+    Point2D operator - (Point2D const &obj) const;
+    Point2D operator += (Point2D const &obj);
+    Point2D operator -= (Point2D const &obj);
+    Point2D operator * (T const &val) const;
+    Point2D operator / (T const &val) const;
+    Point2D operator *= (T const &val);
+    Point2D operator /= (T const &val);
+    Point2D operator = (Point2D const &obj);
+    bool operator == (Point2D const &obj) const;
+    bool operator != (Point2D const &obj) const;
 private:
     T m_x, m_y;
+    T eps = 0.0001;
 };
 
 template <typename T>
