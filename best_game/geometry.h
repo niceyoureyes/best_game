@@ -7,13 +7,9 @@ class Point2D
 public:
     Point2D() = default;
     Point2D(Point2D const &obj);
-    Point2D(T _x, T _y){
-        m_x = _x; m_y = _y;
-    }
-
+    Point2D(T _x, T _y);
     // TODO constructor initializer list
     T &x();
-
     T &y();
     T const &x() const;
     T const &y() const;
@@ -58,22 +54,10 @@ private:
 };
 
 template <typename T>
-bool PointInBox(Point2D<T> &p, Box2D<T> &b)
-{
-    return b.point1.m_x <= p.m_x && p.m_x <= b.point2.m_x &&
-            b.point1.m_y <= p.m_y && p.m_y <= b.point2.m_y;
-}
+bool PointInBox(Point2D<T> &p, Box2D<T> &b);
 
 template <typename T>
-bool CrossBoxes(Box2D<T> &b1, Box2D<T> &b2)
-{
-    return PointInBox(b1.point1, b2) || PointInBox(b1.point2, b2) ||
-            PointInBox(Point2D<T>(b1.point1.m_x, b1.point2.m_y), b2) ||
-            PointInBox(Point2D<T>(b1.point2.m_x, b1.point1.m_y), b2);
-}
+bool CrossBoxes(Box2D<T> &b1, Box2D<T> &b2);
 
 template <typename T>
-bool CrossRayBox(Ray2D<T> &r, Box2D<T> &b)
-{
-    return 0;
-}
+bool CrossRayBox(Ray2D<T> &r, Box2D<T> &b);
