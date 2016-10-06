@@ -3,10 +3,10 @@
 template <typename T>
 Point2D<T>::Point2D(const Point2D<T> &obj) : m_x(obj.m_x), m_y(obj.m_y) {}
 
-//template <typename T>
-//Point2D<T>::Point2D(T _x, T _y){
-//   m_x = _x; m_y = _y;
-//}
+template <typename T>
+Point2D<T>::Point2D(T _x, T _y){
+   m_x = _x; m_y = _y;
+}
 
 template <typename T>
 T &Point2D<T>::x(){return m_x;}
@@ -125,4 +125,25 @@ std::ostream &operator <<(std::ostream &os, const Box2D<T> &box)
 }
 
 template <typename T>
-Ray2D<T>::Ray2D(Point2D<T> _origin, Point2D<T> _direction):origin(_origin), direction(_direction){};
+Ray2D<T>::Ray2D(Point2D<T> _origin, Point2D<T> _direction):origin(_origin), direction(_direction){}
+
+template <typename T>
+bool PointInBox(Point2D<T> &p, Box2D<T> &b)
+{
+    return b.point1.m_x <= p.m_x && p.m_x <= b.point2.m_x &&
+            b.point1.m_y <= p.m_y && p.m_y <= b.point2.m_y;
+}
+
+template <typename T>
+bool CrossBoxes(Box2D<T> &b1, Box2D<T> &b2)
+{
+    return PointInBox(b1.point1, b2) || PointInBox(b1.point2, b2) ||
+            PointInBox(Point2D<T>(b1.point1.m_x, b1.point2.m_y), b2) ||
+            PointInBox(Point2D<T>(b1.point2.m_x, b1.point1.m_y), b2);
+}
+
+template <typename T>
+bool CrossRayBox(Ray2D<T> &r, Box2D<T> &b)
+{
+    return 0;
+}
