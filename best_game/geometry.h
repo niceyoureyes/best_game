@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 template <typename T>
 class Point2D
@@ -6,9 +7,13 @@ class Point2D
 public:
     Point2D() = default;
     Point2D(Point2D const &obj);
-    Point2D(T _x, T _y);
+    Point2D(T _x, T _y){
+        m_x = _x; m_y = _y;
+    }
+
     // TODO constructor initializer list
     T &x();
+
     T &y();
     T const &x() const;
     T const &y() const;
@@ -23,30 +28,32 @@ public:
     Point2D operator = (Point2D const &obj);
     bool operator == (Point2D const &obj) const;
     bool operator != (Point2D const &obj) const;
+
 private:
     T m_x, m_y;
     T eps = 0.0001;
 };
+template <typename T>
+std::ostream &operator << (std::ostream &os, Point2D<T> const &obj);
 
 template <typename T>
 class Box2D
 {
 public:
-    Box2D(Point2D<T> p1, Point2D<T> p2)
-    {
-        point1.m_x = min(p1.m_x, p2.m_x);
-        point1.m_y = min(p1.m_y, p2.m_y);
-        point2.m_x = max(p1.m_x, p2.m_x);
-        point2.m_y = max(p1.m_y, p2.m_y);
-    }
-
+    Box2D(Point2D<T> p1, Point2D<T> p2);
+private:
     Point2D<T> point1, point2;
 };
+template <typename T>
+std::ostream &operator << (std::ostream &os, Box2D<T> const &box);
+
 
 template <typename T>
 class Ray2D
 {
 public:
+    Ray2D(Point2D<T> _origin, Point2D<T> _direction);
+private:
     Point2D<T> origin, direction;
 };
 
