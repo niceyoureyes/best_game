@@ -80,7 +80,19 @@ TEST(test2, test2)
 
 TEST(test3, test3)
 {
+    Point2D <double> a(0, 5), b(10, 10), c(-10, -2), d(-3, -8);
+    Ray2D <double> r(Point2D<double>(0, 0), Point2D<double>(1, 1));
+    Box2D<double> B1(a, b), B2(c, d);
+    EXPECT_EQ(CrossRayBox(r, B1), 1);
+    EXPECT_EQ(CrossRayBox(r, B2), 0);
 
+    EXPECT_EQ(CrossBoxes(B1, B2), 0);
+    B1 = Box2D<double>(Point2D<double>(0, 0), Point2D<double>(5, 6));
+    B2 = Box2D<double>(Point2D<double>(2, 3), Point2D<double>(8, 4));
+    EXPECT_EQ(CrossBoxes(B1, B2), 1);
+    B1 = Box2D<double>(Point2D<double>(0, 4), Point2D<double>(20, 10));
+    B2 = Box2D<double>(Point2D<double>(5, 2), Point2D<double>(10, 50));
+    EXPECT_EQ(CrossBoxes(B1, B2), 1);
 }
 
 int main(int argc, char *argv[])
