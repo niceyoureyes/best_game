@@ -5,7 +5,7 @@
 using namespace std;
 
 /// Point
-TEST(test, test)
+TEST(TestPoints, test)
 {
     Point2D <int> a;
     EXPECT_EQ(a.x(), 0);
@@ -65,7 +65,7 @@ TEST(test, test)
     EXPECT_EQ(e.Length(), 1);
 }
 /// Box
-TEST(test2, test2)
+TEST(TestBoxes, test)
 {
     Box2D <double> a(Point2D<double>(-2, 1),Point2D<double>(3, 3));
     EXPECT_EQ(Point2D<double>(-2,1) == a.point1(), true);
@@ -78,14 +78,10 @@ TEST(test2, test2)
     EXPECT_EQ(a.point2() == Point2D<double> (3,4), true);
 }
 
-TEST(test3, test3)
+TEST(CheckCrossBoxes, test)
 {
     Point2D <double> a(0, 5), b(10, 10), c(-10, -2), d(-3, -8);
-    Ray2D <double> r(Point2D<double>(0, 0), Point2D<double>(1, 1));
     Box2D<double> B1(a, b), B2(c, d);
-    EXPECT_EQ(CrossRayBox(r, B1), 1);
-    EXPECT_EQ(CrossRayBox(r, B2), 0);
-
     EXPECT_EQ(CrossBoxes(B1, B2), 0);
     B1 = Box2D<double>(Point2D<double>(0, 0), Point2D<double>(5, 6));
     B2 = Box2D<double>(Point2D<double>(2, 3), Point2D<double>(8, 4));
@@ -93,6 +89,47 @@ TEST(test3, test3)
     B1 = Box2D<double>(Point2D<double>(0, 4), Point2D<double>(20, 10));
     B2 = Box2D<double>(Point2D<double>(5, 2), Point2D<double>(10, 50));
     EXPECT_EQ(CrossBoxes(B1, B2), 1);
+}
+
+TEST(CheckCrossRayBox, test)
+{
+    Point2D <double> a(0, 5), b(10, 10), c(-10, -2), d(-3, -8);
+    Ray2D <double> r(Point2D<double>(0, 0), Point2D<double>(1, 1));
+    Box2D<double> B1(a, b), B2(c, d);
+    EXPECT_EQ(CrossRayBox(r, B1), 1);
+    EXPECT_EQ(CrossRayBox(r, B2), 0);
+
+    B1 = Box2D<double>(Point2D<double>(0, 0), Point2D<double>(3, 2));
+    r = Ray2D<double>(Point2D<double>(0, -3), Point2D<double>(0, 10));
+    EXPECT_EQ(CrossRayBox(r, B1), 1);
+
+    r = Ray2D<double>(Point2D<double>(-2, 2), Point2D<double>(10, 0));
+    EXPECT_EQ(CrossRayBox(r, B1), 1);
+    r = Ray2D<double>(Point2D<double>(2, 1), Point2D<double>(0, 0.5));
+    EXPECT_EQ(CrossRayBox(r, B1), 1);
+    r = Ray2D<double>(Point2D<double>(3, 2), Point2D<double>(1, 1));
+    EXPECT_EQ(CrossRayBox(r, B1), 1);
+    r = Ray2D<double>(Point2D<double>(3, 1), Point2D<double>(10, 0));
+    EXPECT_EQ(CrossRayBox(r, B1), 1);
+
+    B1 = Box2D<double>(Point2D<double>(-1, -1), Point2D<double>(-3, -3));
+    r = Ray2D<double>(Point2D<double>(0, 0), Point2D<double>(-0.1, -0.1));
+    EXPECT_EQ(CrossRayBox(r, B1), 1);
+    r = Ray2D<double>(Point2D<double>(-2, -5), Point2D<double>(0, 10));
+    EXPECT_EQ(CrossRayBox(r, B1), 1);
+
+    B1 = Box2D<double>(Point2D<double>(-2, 0), Point2D<double>(2, 2));
+    r = Ray2D<double>(Point2D<double>(0, 3), Point2D<double>(0, 10));
+    EXPECT_EQ(CrossRayBox(r, B1), 0);
+
+    r = Ray2D<double>(Point2D<double>(-2, 3), Point2D<double>(0, 10));
+    EXPECT_EQ(CrossRayBox(r, B1), 0);
+
+    r = Ray2D<double>(Point2D<double>(1, -2), Point2D<double>(1, 1));
+    EXPECT_EQ(CrossRayBox(r, B1), 0);
+
+    r = Ray2D<double>(Point2D<double>(-1, -2), Point2D<double>(3.0000000001, 2));
+    EXPECT_EQ(CrossRayBox(r, B1), 0);
 }
 
 int main(int argc, char *argv[])
