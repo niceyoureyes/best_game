@@ -9,7 +9,7 @@ class Point2D
 {
 public:
     Point2D() = default;
-    Point2D(Point2D const &obj);
+    Point2D(Point2D<T> const &obj);
     Point2D(T x, T y);
     // TODO constructor initializer list
     T &x();
@@ -29,9 +29,9 @@ public:
     bool operator != (Point2D const &obj) const;
 
     Point2D Norm(); // return normalized vector
-    T Length();
+    T Length() const;
 private:
-    T m_x, m_y;
+    T m_x = 0, m_y = 0;
 };
 template <typename T>
 std::ostream &operator << (std::ostream &os, Point2D<T> const &obj);
@@ -42,6 +42,7 @@ class Box2D
 {
 public:
     Box2D(Point2D<T> p1, Point2D<T> p2);
+   // Box2D(Box2D<T> const &obj);
     Point2D<T> &point1();
     Point2D<T> &point2();
     Point2D<T> const &point1() const;
@@ -202,13 +203,13 @@ Point2D<T> Point2D<T>::operator =(const Point2D<T> &obj)
 template <typename T>
 bool Point2D<T>::operator ==(const Point2D<T> &obj) const
 {
-    return abs(m_x - obj.x()) <= eps && abs(m_y - obj.y()) < EPS;
+    return abs(m_x - obj.x()) <= EPS && abs(m_y - obj.y()) < EPS;
 }
 
 template <typename T>
 bool Point2D<T>::operator !=(const Point2D<T> &obj) const
 {
-    return !operator ==(*this,obj);
+    return !(*this == obj);
 }
 
 template <typename T>
@@ -218,7 +219,7 @@ Point2D<T> Point2D<T>::Norm()
 }
 
 template <typename T>
-T Point2D<T>::Length()
+T Point2D<T>::Length() const
 {
     return sqrt(x() * x() + y() * y());
 }
@@ -239,6 +240,12 @@ Box2D<T>::Box2D(Point2D<T> p1, Point2D<T> p2)
     m_point2.x() = max(p1.x(), p2.x());
     m_point2.y() = max(p1.y(), p2.y());
 }
+
+//template <typename T>
+//Box2D<T>::Box2D(Box2D<T> const &obj) : {
+//    point1 = obj.point1();
+//    point2 = obj.point2();
+//}
 
 template <typename T>
 std::ostream &operator <<(std::ostream &os, const Box2D<T> &box)
