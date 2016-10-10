@@ -65,7 +65,8 @@ TEST(test, test)
     EXPECT_EQ(e.Length(), 1);
 }
 /// Box
-TEST(test2, test2){
+TEST(test2, test2)
+{
     Box2D <double> a(Point2D<double>(-2, 1),Point2D<double>(3, 3));
     EXPECT_EQ(Point2D<double>(-2,1) == a.point1(), true);
     EXPECT_EQ(Point2D<double>(3,3) == a.point2(), true);
@@ -76,7 +77,11 @@ TEST(test2, test2){
     EXPECT_EQ(a.point1() == Point2D<double> (0,0), true);
     EXPECT_EQ(a.point2() == Point2D<double> (3,4), true);
 }
-/// .........
+
+TEST(test3, test3)
+{
+
+}
 
 int main(int argc, char *argv[])
 {
