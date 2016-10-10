@@ -28,7 +28,7 @@ public:
     bool operator == (Point2D const &obj) const;
     bool operator != (Point2D const &obj) const;
 
-    Point2D Norm(); // return normalized vector
+    Point2D Norm() const; // return normalized vector
     T Length() const;
 private:
     T m_x = 0, m_y = 0;
@@ -41,8 +41,8 @@ template <typename T>
 class Box2D
 {
 public:
-    Box2D(Point2D<T> p1, Point2D<T> p2);
-   // Box2D(Box2D<T> const &obj);
+    Box2D(Point2D<T> const &p1, Point2D<T> const &p2);
+    Box2D(Box2D<T> const &obj);
     Point2D<T> &point1();
     Point2D<T> &point2();
     Point2D<T> const &point1() const;
@@ -58,7 +58,7 @@ template <typename T>
 class Ray2D
 {
 public:
-    Ray2D(Point2D<T> origin, Point2D<T> direction);
+    Ray2D(Point2D<T> const &origin, Point2D<T> const &direction);
     Point2D<T> &origin();
     Point2D<T> const &origin() const;
     Point2D<T> &direction();
@@ -82,34 +82,34 @@ T &max(T &a, T &b)
 }
 
 template <typename T>
-bool PointInBox(Point2D<T> &p, Box2D<T> &b);
+bool PointInBox(Point2D<T> const &p, Box2D<T> const &b);
 
 template <typename T>
-bool CrossBoxes(Box2D<T> &b1, Box2D<T> &b2);
+bool CrossBoxes(Box2D<T> const &b1, Box2D<T> const &b2);
 
 template <typename T>
-bool CrossRayBox(Ray2D<T> &r, Box2D<T> &b);
+bool CrossRayBox(Ray2D<T> const &r, Box2D<T> const &b);
 
 template <typename T>
-T Length(Point2D<T> &p);
+T Length(Point2D<T> const &p);
 
 template <typename T>
-T Length(Point2D<T> &p1, Point2D<T> &p2);
+T Length(Point2D<T> const &p1, Point2D<T> const &p2);
 
 template <typename T>
-Point2D<T> Vector(Point2D<T> &p1, Point2D<T> &p2);
+Point2D<T> Vector(Point2D<T> const &p1, Point2D<T> const &p2);
 
 template <typename T>
-T DotProduct(Point2D<T> &p1, Point2D<T> &p2);
+T DotProduct(Point2D<T> const &p1, Point2D<T> const &p2);
 
 template <typename T>
-T CrossProduct(Point2D<T> &p1, Point2D<T> &p2);
+T CrossProduct(Point2D<T> const &p1, Point2D<T> const &p2);
 
 template <typename T>
-bool PointInSegment(Point2D<T> &p, Point2D<T> &a, Point2D<T> &b);
+bool PointInSegment(Point2D<T> const &p, Point2D<T> const &a, Point2D<T> const &b);
 
 template <typename T>
-bool CrossSegments(Point2D<T> &p1, Point2D<T> &p2, Point2D<T> &p3, Point2D<T> &p4);
+bool CrossSegments(Point2D<T> const &p1, Point2D<T> const &p2, Point2D<T> const &p3, Point2D<T> const &p4);
 
 ///Point2D
 template <typename T>
@@ -203,7 +203,7 @@ Point2D<T> Point2D<T>::operator =(const Point2D<T> &obj)
 template <typename T>
 bool Point2D<T>::operator ==(const Point2D<T> &obj) const
 {
-    return abs(m_x - obj.x()) <= EPS && abs(m_y - obj.y()) < EPS;
+    return abs(m_x - obj.x()) <= EPS && abs(m_y - obj.y()) <= EPS;
 }
 
 template <typename T>
@@ -213,7 +213,7 @@ bool Point2D<T>::operator !=(const Point2D<T> &obj) const
 }
 
 template <typename T>
-Point2D<T> Point2D<T>::Norm()
+Point2D<T> Point2D<T>::Norm() const
 {
     return *this / this->Length();
 }
@@ -233,7 +233,7 @@ std::ostream &operator <<(std::ostream &os, const Point2D<T> &obj)
 
 ///Box2D
 template <typename T>
-Box2D<T>::Box2D(Point2D<T> p1, Point2D<T> p2)
+Box2D<T>::Box2D(Point2D<T> const &p1, Point2D<T> const &p2)
 {
     m_point1.x() = min(p1.x(), p2.x());
     m_point1.y() = min(p1.y(), p2.y());
@@ -241,11 +241,11 @@ Box2D<T>::Box2D(Point2D<T> p1, Point2D<T> p2)
     m_point2.y() = max(p1.y(), p2.y());
 }
 
-//template <typename T>
-//Box2D<T>::Box2D(Box2D<T> const &obj) : {
-//    point1 = obj.point1();
-//    point2 = obj.point2();
-//}
+template <typename T>
+Box2D<T>::Box2D(Box2D<T> const &obj) : {
+    point1 = obj.point1();
+    point2 = obj.point2();
+}
 
 template <typename T>
 std::ostream &operator <<(std::ostream &os, const Box2D<T> &box)
@@ -262,7 +262,7 @@ std::ostream &operator <<(std::ostream &os, const Ray2D<T> &obj)
 }
 
 template <typename T>
-Ray2D<T>::Ray2D(Point2D<T> origin, Point2D<T> direction):m_origin(origin), m_direction(direction)
+Ray2D<T>::Ray2D(Point2D<T> const &origin, Point2D<T> const &direction):m_origin(origin), m_direction(direction)
 {
     m_direction = m_direction.Norm();
 }
@@ -294,14 +294,14 @@ Point2D<T> const &Box2D<T>::point2() const {return m_point2;}
 ///Other
 
 template <typename T>
-bool PointInBox(Point2D<T> &p, Box2D<T> &b)
+bool PointInBox(Point2D<T> const &p, Box2D<T> const &b)
 {
     return b.point1().x() <= p.x() && p.x() <= b.point2().x() &&
             b.point1().y() <= p.y() && p.y() <= b.point2().y();
 }
 
 template <typename T>
-bool CrossBoxes(Box2D<T> &b1, Box2D<T> &b2)
+bool CrossBoxes(Box2D<T> const &b1, Box2D<T> const &b2)
 {
     return (b1.point1().x() <= b2.point1().x() && b2.point1().x() <= b1.point2().x() ||
             b1.point1().x() <= b2.point2().x() && b2.point2().x() <= b1.point2().x() ||
@@ -314,44 +314,44 @@ bool CrossBoxes(Box2D<T> &b1, Box2D<T> &b2)
 }
 
 template <typename T>
-T Length(Point2D<T> &p)
+T Length(Point2D<T> const &p)
 {
     return sqrt(p.x() * p.x() + p.y() * p.y());
 }
 
 template <typename T>
-T Length(Point2D<T> &p1, Point2D<T> &p2)
+T Length(Point2D<T> const &p1, Point2D<T> const &p2)
 {
     return sqrt((p2.x() - p1.x()) * (p2.x() - p1.x()) + (p2.y() - p1.y()) * (p2.y() - p1.y()));
 }
 
 template <typename T>
-Point2D<T> Vector(Point2D<T> &p1, Point2D<T> &p2)
+Point2D<T> Vector(Point2D<T> const &p1, Point2D<T> const &p2)
 {
     return p2 - p1;
 }
 
 template <typename T>
-T DotProduct(Point2D<T> &p1, Point2D<T> &p2)
+T DotProduct(Point2D<T> const &p1, Point2D<T> const &p2)
 {
     return p1.x() * p2.x() + p1.y() * p2.y();
 }
 
 template <typename T>
-T CrossProduct(Point2D<T> &p1, Point2D<T> &p2)
+T CrossProduct(Point2D<T> const &p1, Point2D<T> const &p2)
 {
     return p1.x() * p2.y() - p1.y() * p2.x();
 }
 
 template <typename T>
-bool PointInSegment(Point2D<T> &p, Point2D<T> &a, Point2D<T> &b)
+bool PointInSegment(Point2D<T> const &p, Point2D<T> const &a, Point2D<T> const &b)
 {
     return abs(CrossProduct(Vector(p, a), Vector(p, b))) < EPS  &&
             DotProduct(Vector(p, a), Vector(p, b)) <= 0;
 }
 
 template <typename T>
-bool CrossSegments(Point2D<T> &p1, Point2D<T> &p2, Point2D<T> &p3, Point2D<T> &p4)
+bool CrossSegments(Point2D<T> const &p1, Point2D<T> const &p2, Point2D<T> const &p3, Point2D<T> const &p4)
 {
     return PointInSegment(p1, p3, p4) || PointInSegment(p2, p3, p4) ||
             PointInSegment(p3, p1, p2) || PointInSegment(p4, p1, p2) ||
@@ -362,7 +362,7 @@ bool CrossSegments(Point2D<T> &p1, Point2D<T> &p2, Point2D<T> &p3, Point2D<T> &p
 }
 
 template <typename T>
-bool CrossRayBox(Ray2D<T> &r, Box2D<T> &b)
+bool CrossRayBox(Ray2D<T> const &r, Box2D<T> const &b)
 {
     //TODO: change 100000 to smth else
     auto p1 = r.origin(), p2 = (r.origin() + r.direction() * 100000);
