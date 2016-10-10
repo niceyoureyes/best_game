@@ -303,9 +303,14 @@ bool PointInBox(Point2D<T> &p, Box2D<T> &b)
 template <typename T>
 bool CrossBoxes(Box2D<T> &b1, Box2D<T> &b2)
 {
-    return PointInBox(b1.point1(), b2) || PointInBox(b1.point2(), b2) ||
-            PointInBox(Point2D<T>(b1.point1().x(), b1.point2().y()), b2) ||
-            PointInBox(Point2D<T>(b1.point2().x(), b1.point1().y()), b2);
+    return (b1.point1().x() <= b2.point1().x() && b2.point1().x() <= b1.point2().x() ||
+            b1.point1().x() <= b2.point2().x() && b2.point2().x() <= b1.point2().x() ||
+            b2.point1().x() <= b1.point1().x() && b1.point1().x() <= b2.point2().x() ||
+            b2.point1().x() <= b1.point2().x() && b1.point2().x() <= b2.point2().x()) &&
+            (b1.point1().y() <= b2.point1().y() && b2.point1().y() <= b1.point2().y() ||
+             b1.point1().y() <= b2.point2().y() && b2.point2().y() <= b1.point2().y() ||
+             b2.point1().y() <= b1.point1().y() && b1.point1().y() <= b2.point2().y() ||
+             b2.point1().y() <= b1.point2().y() && b1.point2().y() <= b2.point2().y());
 }
 
 template <typename T>
