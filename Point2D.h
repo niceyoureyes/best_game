@@ -1,7 +1,6 @@
 #pragma once
-#include "stdafx.h"
 #include <iostream>
-#define EPS 0.000001;
+#define EPSI 0.000001
 class Point2D
 {
 public:

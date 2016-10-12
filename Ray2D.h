@@ -1,5 +1,5 @@
 #pragma once
-#include "stdafx.h"
+#include "Point2D.h"
 
 class Ray2D
 {

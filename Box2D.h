@@ -1,6 +1,6 @@
 #pragma once
-#include "stdafx.h"
 #include <iostream>
+#include "Point2D.h"
 
 class Box2D
 {

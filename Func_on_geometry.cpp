@@ -55,7 +55,7 @@ double CrossProduct(Point2D const &p1, Point2D const &p2)
 
 bool PointInSegment(Point2D const &p, Point2D const &a, Point2D const &b)
 {
-	return abs(CrossProduct(Vector(p, a), Vector(p, b))) < EPS  &&
+	return abs(CrossProduct(Vector(p, a), Vector(p, b))) < EPSI  &&
 		DotProduct(Vector(p, a), Vector(p, b)) <= 0;
 }
 

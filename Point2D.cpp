@@ -71,9 +71,9 @@ Point2D Point2D::operator =(const Point2D &obj)
 	return *this;
 }
 
-bool Point2D  ::operator ==(const Point2D &obj) const
+bool Point2D::operator ==(const Point2D &obj) const
 {
-	return (abs(m_x - obj.x()) < EPS) && (abs(m_y - obj.y()) < EPS);
+	return (abs(m_x - obj.x()) < EPSI) && (abs(m_y - obj.y()) < EPSI);
 }
 
 bool Point2D::operator !=(const Point2D &obj) const

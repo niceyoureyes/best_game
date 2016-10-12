@@ -1,5 +1,7 @@
 #pragma once
-#include "stdafx.h"
+#include "Point2D.h"
+#include "Box2D.h"
+#include "Ray2D.h"
 
 double &min(double &a, double &b);
 double &max(double &a, double &b);
