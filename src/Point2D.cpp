@@ -15,85 +15,85 @@ double  const &Point2D::y() const { return m_y; }
 
 Point2D Point2D::operator +(const Point2D &obj) const
 {
-	return Point2D(m_x + obj.x(), m_y + obj.y());
+  return Point2D(m_x + obj.x(), m_y + obj.y());
 }
 
 Point2D Point2D::operator - (const Point2D &obj) const
 {
-	return Point2D(m_x - obj.x(), m_y - obj.y());
+  return Point2D(m_x - obj.x(), m_y - obj.y());
 }
 
 Point2D Point2D::operator +=(const Point2D &obj)
 {
-	m_x += obj.x();
-	m_y += obj.y();
-	return *this;
+  m_x += obj.x();
+  m_y += obj.y();
+  return *this;
 }
 
 Point2D Point2D::operator -=(const Point2D &obj)
 {
-	m_x -= obj.x();
-	m_y -= obj.y();
-	return *this;
+  m_x -= obj.x();
+  m_y -= obj.y();
+  return *this;
 }
 
 Point2D Point2D::operator *(const double &val) const
 {
-	return Point2D(m_x * val, m_y * val);
+  return Point2D(m_x * val, m_y * val);
 }
 
 Point2D Point2D::operator / (const double  &val) const
 {
-	//TODO exception
-	return Point2D(m_x / val, m_y / val);
+  //TODO exception
+  return Point2D(m_x / val, m_y / val);
 }
 
 Point2D Point2D::operator *=(const double  &val)
 {
-	m_x *= val;
-	m_y *= val;
-	return *this;
+  m_x *= val;
+  m_y *= val;
+  return *this;
 }
 
 Point2D Point2D::operator /=(const double  &val)
 {
-	// TODO exception
-	m_x /= val;
-	m_y /= val;
-	return *this;
+  // TODO exception
+  m_x /= val;
+  m_y /= val;
+  return *this;
 }
 
 Point2D Point2D::operator =(const Point2D &obj)
 {
-	if (&obj == this)
-		return *this;
-	m_x = obj.x();
-	m_y = obj.y();
-	return *this;
+  if (&obj == this)
+    return *this;
+  m_x = obj.x();
+  m_y = obj.y();
+  return *this;
 }
 
 bool Point2D::operator ==(const Point2D &obj) const
 {
-	return (abs(m_x - obj.x()) < EPSI) && (abs(m_y - obj.y()) < EPSI);
+  return (abs(m_x - obj.x()) < EPSI) && (abs(m_y - obj.y()) < EPSI);
 }
 
 bool Point2D::operator !=(const Point2D &obj) const
 {
-	return !(*this == obj);
+  return !(*this == obj);
 }
 
 Point2D Point2D::Norm() const
 {
-	return *this / this->Length();
+  return *this / this->Length();
 }
 
 double Point2D::Length() const
 {
-	return sqrt(x() * x() + y() * y());
+  return sqrt(x() * x() + y() * y());
 }
 
 std::ostream &operator <<(std::ostream &os, const Point2D &obj)
 {
-	os << "Point2D{" << obj.x() << ", " << obj.y() << "}" << std::endl;
-	return os;
+  os << "Point2D{" << obj.x() << ", " << obj.y() << "}" << std::endl;
+  return os;
 }

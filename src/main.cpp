@@ -5,6 +5,6 @@
 #include "Geom_func.h"
 
 int main() {
-    std::cout << "moo-moo" << std::endl;
-	return 0;
+  std::cout << "moo-moo" << std::endl;
+  return 0;
 }
