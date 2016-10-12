@@ -14,6 +14,15 @@
 # EXTERNAL cache entries
 ########################
 
+//Builds the googlemock subproject
+BUILD_GMOCK:BOOL=ON
+
+//Builds the googletest subproject
+BUILD_GTEST:BOOL=OFF
+
+//Build shared libraries (DLLs).
+BUILD_SHARED_LIBS:BOOL=OFF
+
 //Path to a program.
 CMAKE_AR:FILEPATH=C:/Program Files/Qt/Tools/mingw530_32/bin/ar.exe
 
@@ -127,7 +136,7 @@ CMAKE_OBJCOPY:FILEPATH=C:/Program Files/Qt/Tools/mingw530_32/bin/objcopy.exe
 CMAKE_OBJDUMP:FILEPATH=C:/Program Files/Qt/Tools/mingw530_32/bin/objdump.exe
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=template
+CMAKE_PROJECT_NAME:STATIC=best_game
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=C:/Program Files/Qt/Tools/mingw530_32/bin/ranlib.exe
@@ -187,8 +196,66 @@ CMAKE_STRIP:FILEPATH=C:/Program Files/Qt/Tools/mingw530_32/bin/strip.exe
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//Path to a program.
+PYTHON_EXECUTABLE:FILEPATH=PYTHON_EXECUTABLE-NOTFOUND
+
 //No help, variable specified on the command line.
 QT_QMAKE_EXECUTABLE:STRING=C:/Program Files/Qt/5.7/mingw53_32/bin/qmake.exe
+
+//Value Computed by CMake
+best_game_BINARY_DIR:STATIC=C:/Git/best_game/build_MinGW_32bit
+
+//Value Computed by CMake
+best_game_SOURCE_DIR:STATIC=C:/Git/best_game
+
+//Value Computed by CMake
+gmock_BINARY_DIR:STATIC=C:/Git/best_game/build_MinGW_32bit/3party/googletest/googlemock
+
+//Dependencies for target
+gmock_LIB_DEPENDS:STATIC=
+
+//Value Computed by CMake
+gmock_SOURCE_DIR:STATIC=C:/Git/best_game/3party/googletest/googlemock
+
+//Build all of Google Mock's own tests.
+gmock_build_tests:BOOL=OFF
+
+//Dependencies for target
+gmock_main_LIB_DEPENDS:STATIC=
+
+//Value Computed by CMake
+googletest-distribution_BINARY_DIR:STATIC=C:/Git/best_game/build_MinGW_32bit/3party/googletest
+
+//Value Computed by CMake
+googletest-distribution_SOURCE_DIR:STATIC=C:/Git/best_game/3party/googletest
+
+//Value Computed by CMake
+gtest_BINARY_DIR:STATIC=C:/Git/best_game/build_MinGW_32bit/3party/googletest/googlemock/gtest
+
+//Dependencies for target
+gtest_LIB_DEPENDS:STATIC=
+
+//Value Computed by CMake
+gtest_SOURCE_DIR:STATIC=C:/Git/best_game/3party/googletest/googletest
+
+//Build gtest's sample programs.
+gtest_build_samples:BOOL=OFF
+
+//Build all of gtest's own tests.
+gtest_build_tests:BOOL=OFF
+
+//Disable uses of pthreads in gtest.
+gtest_disable_pthreads:BOOL=OFF
+
+//Use shared (DLL) run-time lib even when Google Test is built
+// as static lib.
+gtest_force_shared_crt:BOOL=OFF
+
+//Build gtest with internal symbols hidden in shared libraries.
+gtest_hide_internal_symbols:BOOL=OFF
+
+//Dependencies for the target
+gtest_main_LIB_DEPENDS:STATIC=general;gtest;
 
 //Value Computed by CMake
 template_BINARY_DIR:STATIC=C:/Git/best_game/build_MinGW_32bit
@@ -295,7 +362,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=4
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -339,4 +406,6 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 CMAKE_STRIP-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PYTHON_EXECUTABLE
+PYTHON_EXECUTABLE-ADVANCED:INTERNAL=1
 
