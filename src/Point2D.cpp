@@ -1,4 +1,5 @@
 #include "Point2D.h"
+#include <cmath>
 
 Point2D::Point2D(const Point2D &obj) : m_x(obj.m_x), m_y(obj.m_y) {}
 

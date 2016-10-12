@@ -1,0 +1,3 @@
+C:/Git/best_game/build_MinGW_32bit/CMakeFiles/template.dir
+C:/Git/best_game/build_MinGW_32bit/CMakeFiles/edit_cache.dir
+C:/Git/best_game/build_MinGW_32bit/CMakeFiles/rebuild_cache.dir

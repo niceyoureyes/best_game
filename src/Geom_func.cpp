@@ -1,4 +1,5 @@
-#include "Func_on_geometry.h"
+#include "Geom_func.h"
+#include <cmath>
 
 double &min(double &a, double &b)
 {

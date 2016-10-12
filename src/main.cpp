@@ -2,10 +2,9 @@
 #include "Point2D.h"
 #include "Box2D.h"
 #include "Ray2D.h"
-#include "Func_on_geometry.h"
+#include "Geom_func.h"
 
 int main() {
-	Point2D a;
-	system("pause");
+    std::cout << "moo-moo" << std::endl;
 	return 0;
 }
