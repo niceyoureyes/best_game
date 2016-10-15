@@ -1,9 +1,21 @@
 #include "Point2D.h"
 #include <cmath>
 
-Point2D::Point2D(const Point2D &obj) : m_x(obj.m_x), m_y(obj.m_y) {}
+Point2D::Point2D(const Point2D &obj) : m_x(obj.m_x), m_y(obj.m_y) {
+  //std::cout << "Copy constructor" << std::endl;
+}
 
-Point2D::Point2D(double  _x, double  _y) : m_x(_x), m_y(_y) {}
+Point2D::Point2D(Point2D && obj)
+{
+  std::swap(obj.m_x, m_x);
+  std::swap(obj.m_y, m_y);
+  //std::cout << "Move constructor" << std::endl;
+}
+
+Point2D::Point2D(double  _x, double  _y) : m_x(_x), m_y(_y)
+{
+  //std::cout << "Constructor with parametres" << std::endl;
+}
 
 double  &Point2D::x() { return m_x; }
 
@@ -65,6 +77,7 @@ Point2D Point2D::operator /=(const double  &val)
 
 Point2D Point2D::operator =(const Point2D &obj)
 {
+ // std::cout << "operator = " << std::endl;
   if (&obj == this)
     return *this;
   m_x = obj.x();
@@ -72,9 +85,17 @@ Point2D Point2D::operator =(const Point2D &obj)
   return *this;
 }
 
+Point2D & Point2D::operator=(Point2D && obj)
+{
+ // std::cout << "operator move" << std::endl;
+  std::swap(m_x, obj.m_x);
+  std::swap(m_y, obj.m_y);
+  return *this;
+}
+
 bool Point2D::operator ==(const Point2D &obj) const
 {
-  return (abs(m_x - obj.x()) < EPSI) && (abs(m_y - obj.y()) < EPSI);
+  return (abs(m_x - obj.x()) < EPS) && (abs(m_y - obj.y()) < EPS);
 }
 
 bool Point2D::operator !=(const Point2D &obj) const

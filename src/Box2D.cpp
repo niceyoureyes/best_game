@@ -14,6 +14,29 @@ Box2D::Box2D(Box2D const &obj) {
   m_point2 = obj.point2();
 }
 
+Box2D::Box2D(Box2D && obj)
+{
+  std::swap(m_point1, obj.m_point1);
+  std::swap(m_point2, obj.m_point2);
+}
+
+Box2D & Box2D::operator=(Box2D && obj)
+{
+  std::swap(m_point1, obj.m_point1);
+  std::swap(m_point2, obj.m_point2);
+  return *this;
+}
+
+Box2D Box2D::operator =(const Box2D &obj)
+{
+//  std::cout << "operator = " << std::endl;
+  if (&obj == this)
+    return *this;
+  m_point1 = obj.point1();
+  m_point2 = obj.point2();
+  return *this;
+}
+
 Point2D & Box2D::point1() { return m_point1; }
 
 Point2D const & Box2D::point1() const { return m_point1; }

@@ -7,7 +7,6 @@
 
 using namespace std;
 
-/// Point
 TEST(TestPoints, test)
 {
   Point2D a;
@@ -34,9 +33,9 @@ TEST(TestPoints, test)
   a = c * 2;
   EXPECT_EQ(a.x(), -10);
   EXPECT_EQ(a.y(), 10);
-  a /= 3;
-  EXPECT_EQ(a.x(), -3);
-  EXPECT_EQ(a.y(), 3);
+  a /= 4;
+  EXPECT_EQ(a.x(), -2.5);
+  EXPECT_EQ(a.y(), 2.5);
 
   Point2D d(6.9999999999, 0);
   Point2D e(7.0000000001, 0);
@@ -66,8 +65,13 @@ TEST(TestPoints, test)
   EXPECT_EQ(e.x(), 3.0 / 5);
   EXPECT_EQ(e.y(), 4.0 / 5);
   EXPECT_EQ(e.Length(), 1);
+
+  a = b;
+  EXPECT_EQ(a == b, true);
+  a = b * 2;
+  EXPECT_EQ(a == b * 2, true);
 }
-/// Box
+
 TEST(TestBoxes, test)
 {
   Box2D a(Point2D(-2, 1),Point2D(3, 3));
@@ -79,6 +83,8 @@ TEST(TestBoxes, test)
   a = b;
   EXPECT_EQ(a.point1() == Point2D (0,0), true);
   EXPECT_EQ(a.point2() == Point2D (3,4), true);
+  a = Box2D(Point2D(-2, 1),Point2D(3, 3));
+  EXPECT_EQ(Point2D(-2,1) == a.point1() && Point2D(3,3) == a.point2(), true);
 }
 
 TEST(CheckCrossBoxes, test)
@@ -132,7 +138,7 @@ TEST(CheckCrossRayBox, test)
   EXPECT_EQ(CrossRayBox(r, B1), 0);
 
   r = Ray2D(Point2D(-1, -2), Point2D(3.0000000001, 2));
-  EXPECT_EQ(CrossRayBox(r, B1), 0);
+  EXPECT_EQ(CrossRayBox(r, B1), 1);
 }
 
 int main(int argc, char *argv[])

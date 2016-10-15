@@ -7,6 +7,9 @@ class Box2D
 public:
   Box2D(Point2D const &p1, Point2D const &p2);
   Box2D(Box2D const &obj);
+  Box2D(Box2D && obj);
+  Box2D &operator = (Box2D && obj);
+  Box2D operator = (Box2D const &obj);
   Point2D & point1();
   Point2D & point2();
   Point2D const & point1() const;
