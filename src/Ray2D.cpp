@@ -25,7 +25,6 @@ Ray2D & Ray2D::operator=(Ray2D && obj)
 
 Ray2D Ray2D::operator =(const Ray2D &obj)
 {
-//  std::cout << "operator = " << std::endl;
   if (&obj == this)
     return *this;
   m_origin = obj.origin();
