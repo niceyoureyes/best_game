@@ -4,6 +4,8 @@
 #include "Ray2D.h"
 #include "Geom_func.h"
 using namespace std;
-int main() {
+int main()
+{
+  cout << "Compilated, yeeah!" << endl;
   return 0;
 }

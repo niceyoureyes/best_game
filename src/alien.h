@@ -1,6 +1,6 @@
 #pragma once
 #include "Ray2D.h"
-#include "gun.h"
+#include "Gun.h"
 
 class Alien
 {

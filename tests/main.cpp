@@ -75,29 +75,29 @@ TEST(TestPoints, test)
 TEST(TestBoxes, test)
 {
   Box2D a(Point2D(-2, 1),Point2D(3, 3));
-  EXPECT_EQ(Point2D(-2,1) == a.point1(), true);
-  EXPECT_EQ(Point2D(3,3) == a.point2(), true);
+  EXPECT_EQ(Point2D(-2,1) == a.PointMin(), true);
+  EXPECT_EQ(Point2D(3,3) == a.PointMax(), true);
   Box2D b = Box2D (Point2D(0,4),Point2D(3,0));
-  EXPECT_EQ(b.point1() == Point2D (0,0), true);
-  EXPECT_EQ(b.point2() == Point2D (3,4), true);
+  EXPECT_EQ(b.PointMin() == Point2D (0,0), true);
+  EXPECT_EQ(b.PointMax() == Point2D (3,4), true);
   a = b;
-  EXPECT_EQ(a.point1() == Point2D (0,0), true);
-  EXPECT_EQ(a.point2() == Point2D (3,4), true);
+  EXPECT_EQ(a.PointMin() == Point2D (0,0), true);
+  EXPECT_EQ(a.PointMax() == Point2D (3,4), true);
   a = Box2D(Point2D(-2, 1),Point2D(3, 3));
-  EXPECT_EQ(Point2D(-2,1) == a.point1() && Point2D(3,3) == a.point2(), true);
+  EXPECT_EQ(Point2D(-2,1) == a.PointMin() && Point2D(3,3) == a.PointMax(), true);
 }
 
 TEST(CheckCrossBoxes, test)
 {
   Point2D  a(0, 5), b(10, 10), c(-10, -2), d(-3, -8);
   Box2D B1(a, b), B2(c, d);
-  EXPECT_EQ(CrossBoxes(B1, B2), 0);
+  EXPECT_EQ(B1.IntersectBox(B2), 0);
   B1 = Box2D(Point2D(0, 0), Point2D(5, 6));
   B2 = Box2D(Point2D(2, 3), Point2D(8, 4));
-  EXPECT_EQ(CrossBoxes(B1, B2), 1);
+  EXPECT_EQ(B1.IntersectBox(B2), 1);
   B1 = Box2D(Point2D(0, 4), Point2D(20, 10));
   B2 = Box2D(Point2D(5, 2), Point2D(10, 50));
-  EXPECT_EQ(CrossBoxes(B1, B2), 1);
+  EXPECT_EQ(B1.IntersectBox(B2), 1);
 }
 
 TEST(CheckCrossRayBox, test)
@@ -105,43 +105,43 @@ TEST(CheckCrossRayBox, test)
   Point2D  a(0, 5), b(10, 10), c(-10, -2), d(-3, -8);
   Ray2D  r(Point2D(0, 0), Point2D(1, 1));
   Box2D B1(a, b), B2(c, d);
-  EXPECT_EQ(CrossRayBox(r, B1), 1);
-  EXPECT_EQ(CrossRayBox(r, B2), 0);
+  EXPECT_EQ(r.IntersectBox(B1), 1);
+  EXPECT_EQ(r.IntersectBox(B2), 0);
 
   B1 = Box2D(Point2D(0, 0), Point2D(3, 2));
   r = Ray2D(Point2D(0, -3), Point2D(0, 10));
-  EXPECT_EQ(CrossRayBox(r, B1), 1);
+  EXPECT_EQ(r.IntersectBox(B1), 1);
 
   r = Ray2D(Point2D(-2, 2), Point2D(10, 0));
-  EXPECT_EQ(CrossRayBox(r, B1), 1);
+  EXPECT_EQ(r.IntersectBox(B1), 1);
   r = Ray2D(Point2D(2, 1), Point2D(0, 0.5));
-  EXPECT_EQ(CrossRayBox(r, B1), 1);
+  EXPECT_EQ(r.IntersectBox(B1), 1);
   r = Ray2D(Point2D(3, 2), Point2D(1, 1));
-  EXPECT_EQ(CrossRayBox(r, B1), 1);
+  EXPECT_EQ(r.IntersectBox(B1), 1);
   r = Ray2D(Point2D(3, 1), Point2D(10, 0));
-  EXPECT_EQ(CrossRayBox(r, B1), 1);
+  EXPECT_EQ(r.IntersectBox(B1), 1);
 
   B1 = Box2D(Point2D(-1, -1), Point2D(-3, -3));
   r = Ray2D(Point2D(0, 0), Point2D(-0.1, -0.1));
-  EXPECT_EQ(CrossRayBox(r, B1), 1);
+  EXPECT_EQ(r.IntersectBox(B1), 1);
   r = Ray2D(Point2D(-2, -5), Point2D(0, 10));
-  EXPECT_EQ(CrossRayBox(r, B1), 1);
+  EXPECT_EQ(r.IntersectBox(B1), 1);
 
   B1 = Box2D(Point2D(-2, 0), Point2D(2, 2));
   r = Ray2D(Point2D(0, 3), Point2D(0, 10));
-  EXPECT_EQ(CrossRayBox(r, B1), 0);
+  EXPECT_EQ(r.IntersectBox(B1), 0);
 
   r = Ray2D(Point2D(-2, 3), Point2D(0, 10));
-  EXPECT_EQ(CrossRayBox(r, B1), 0);
+  EXPECT_EQ(r.IntersectBox(B1), 0);
 
   r = Ray2D(Point2D(1, -2), Point2D(1, 1));
-  EXPECT_EQ(CrossRayBox(r, B1), 0);
+  EXPECT_EQ(r.IntersectBox(B1), 0);
 
   r = Ray2D(Point2D(-1, -2), Point2D(3.0000000001, 2));
-  EXPECT_EQ(CrossRayBox(r, B1), 1);
+  EXPECT_EQ(r.IntersectBox(B1), 1);
 }
 
-int main(int argc, char *argv[])
+int main(int argc, char * argv[])
 {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();

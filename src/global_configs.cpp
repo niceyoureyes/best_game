@@ -1,4 +1,4 @@
-#include "global_configs.h"
+#include "Global_configs.h"
 
 vector <Ammo> ammo_configs;
 vector <Weapon> weapon_configs;

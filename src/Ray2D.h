@@ -1,5 +1,6 @@
 #pragma once
 #include "Point2D.h"
+#include "Box2D.h"
 
 class Ray2D
 {
@@ -14,8 +15,9 @@ public:
   Point2D const & origin() const;
   Point2D & direction();
   Point2D const & direction() const;
+  bool IntersectBox(Box2D const & box);
 private:
   Point2D m_origin, m_direction;
 };
 
-std::ostream &operator << (std::ostream & os, Ray2D const & obj);
+std::ostream & operator << (std::ostream & os, Ray2D const & obj);

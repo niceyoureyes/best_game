@@ -1,7 +1,8 @@
-#include "gun.h"
-#include "global_configs.h"
+#include "Gun.h"
+#include "Global_configs.h"
 
-Gun::Gun(Point2D position, Point2D direction, int type_weapon, int type_ammo):m_fire_position(position), m_direction(direction), m_type_weapon(type_weapon), m_ammo_type(type_ammo)
+Gun::Gun(Point2D const position, Point2D const direction, int const type_weapon, int const type_ammo):
+  m_fire_position(position), m_direction(direction), m_type_weapon(type_weapon), m_ammo_type(type_ammo)
 {
   m_hit_power = weapon_configs[type_weapon].hit_power * ammo_configs[type_ammo].hit_power;
   m_hit_impulse = weapon_configs[type_weapon].hit_impulse * ammo_configs[type_ammo].hit_impulse;
@@ -10,7 +11,7 @@ Gun::Gun(Point2D position, Point2D direction, int type_weapon, int type_ammo):m_
   m_rpm = weapon_configs[type_weapon].rpm;
 }
 
-Gun::Gun(Gun &obj)
+Gun::Gun(Gun const & obj)
 {
   m_fire_position = obj.m_fire_position;
   m_direction = obj.m_direction;
@@ -36,7 +37,7 @@ Gun::Gun(Gun && obj)
   swap(m_ammo_type, obj.m_ammo_type);
 }
 
-Gun Gun::operator=(Gun &obj)
+Gun Gun::operator = (Gun const & obj)
 {
   m_fire_position = obj.m_fire_position;
   m_direction = obj.m_direction;
@@ -50,8 +51,16 @@ Gun Gun::operator=(Gun &obj)
   return *this;
 }
 
-void Gun::SetTypeAmmo(int type):m_ammo_type(type)
+//Gun & Gun::operator = (Gun && obj)
+//{
+//  std::swap(m_point1, obj.m_point1);
+//  std::swap(m_point2, obj.m_point2);
+//  return *this;
+//}
+
+void Gun::SetTypeAmmo(int type)
 {
+  m_ammo_type = type;
   m_hit_power = weapon_configs[m_type_weapon].hit_power * ammo_configs[type].hit_power;
   m_hit_impulse = weapon_configs[m_type_weapon].hit_impulse * ammo_configs[type].hit_impulse;
   m_speed = weapon_configs[m_type_weapon].speed * ammo_configs[type].speed;

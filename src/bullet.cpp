@@ -1,7 +1,8 @@
-#include "bullet.h"
+#include "Bullet.h"
 using namespace std;
 
-Bullet::Bullet(Ray2D const & orientation, double speed, double damage, double impulse, int hit_type):m_damage(damage), m_impulse(impulse), m_hit_type(hit_type), m_orientation(orientation), m_speed(speed) {}
+Bullet::Bullet(Ray2D const & orientation, double speed, double damage, double impulse, int hit_type):
+  m_damage(damage), m_impulse(impulse), m_hit_type(hit_type), m_orientation(orientation), m_speed(speed) {}
 
 Bullet::Bullet(const Bullet & obj)
 {
@@ -21,7 +22,7 @@ Bullet::Bullet(Bullet && obj)
   swap(m_hit_type, obj.m_hit_type);
 }
 
-Bullet Bullet::operator=(const Bullet & obj)
+Bullet Bullet::operator = (const Bullet & obj)
 {
   m_orientation = obj.m_orientation;
   m_speed = obj.m_speed;

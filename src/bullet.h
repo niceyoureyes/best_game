@@ -3,10 +3,10 @@
 class Bullet
 {
 public:
-  Bullet(Ray2D const &orientation, double speed, double damage, double impulse, int hit_type);
+  Bullet(Ray2D const & orientation, double speed, double damage, double impulse, int hit_type);
   Bullet(Bullet const & obj);
   Bullet(Bullet && obj);
-  Bullet operator=(Bullet const & obj);
+  Bullet operator = (Bullet const & obj);
 
   Ray2D & Orientation();
   Ray2D const & Orientation() const;

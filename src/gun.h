@@ -1,15 +1,16 @@
 #pragma once
 #include "Ray2D.h"
-#include "bullet.h"
+#include "Bullet.h"
 using namespace std;
 class Gun
 {
 public:
   Gun() = default;
-  Gun(Point2D position, Point2D direction, int type_weapon, int type_ammo);
-  Gun(Gun & obj);
+  Gun(Point2D const position, Point2D const direction, int const type_weapon, int const type_ammo);
+  Gun(Gun const & obj);
   Gun(Gun && obj);
-  Gun operator=(Gun & obj);
+  Gun operator = (Gun const & obj);
+//  Gun & operator = (Gun && obj);
 
   void SetTypeAmmo(int type);
   Bullet Shot(Point2D AlienPos);
