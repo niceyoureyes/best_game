@@ -51,13 +51,6 @@ Gun Gun::operator = (Gun const & obj)
   return *this;
 }
 
-//Gun & Gun::operator = (Gun && obj)
-//{
-//  std::swap(m_point1, obj.m_point1);
-//  std::swap(m_point2, obj.m_point2);
-//  return *this;
-//}
-
 void Gun::SetTypeAmmo(int type)
 {
   m_ammo_type = type;

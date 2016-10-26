@@ -10,7 +10,6 @@ public:
   Gun(Gun const & obj);
   Gun(Gun && obj);
   Gun operator = (Gun const & obj);
-//  Gun & operator = (Gun && obj);
 
   void SetTypeAmmo(int type);
   Bullet Shot(Point2D AlienPos);
