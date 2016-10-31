@@ -1,8 +1,9 @@
 #pragma once
 #include "Ray2D.h"
 #include "Gun.h"
+#include "GameObject.h"
 
-class Alien
+class Alien : public GameObject
 {
 public:
   Alien(double hp, Ray2D orientation, double speed, int weapon_type, int ammo_type);

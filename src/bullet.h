@@ -1,6 +1,8 @@
 #pragma once
 #include "Ray2D.h"
-class Bullet
+#include "GameObject.h"
+
+class Bullet : public GameObject
 {
 public:
   Bullet(Ray2D const & orientation, double speed, double damage, double impulse, int hit_type);

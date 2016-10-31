@@ -1,8 +1,9 @@
 #pragma once
 #include "Ray2D.h"
 #include "Bullet.h"
-using namespace std;
-class Gun
+#include "GameObject.h"
+
+class Gun : public GameObject
 {
 public:
   Gun() = default;

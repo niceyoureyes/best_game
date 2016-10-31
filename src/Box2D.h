@@ -10,6 +10,7 @@ public:
   Box2D(Box2D && obj);
   Box2D & operator = (Box2D && obj);
   Box2D operator = (Box2D const & obj);
+
   Point2D const & PointMin() const;
   Point2D const & PointMax() const;
   bool IntersectBox(Box2D const & box);
