@@ -22,7 +22,7 @@ bool PointOnSegment(Point2D const & p, Point2D const & a, Point2D const & b)
       DotProduct(Vector(p, a), Vector(p, b)) <= 0;
 }
 
-bool CrossSegments(Point2D const & p1, Point2D const & p2, Point2D const & p3, Point2D const & p4)
+bool SegmentsIntersection(Point2D const & p1, Point2D const & p2, Point2D const & p3, Point2D const & p4)
 {
   return PointOnSegment(p1, p3, p4) || PointOnSegment(p2, p3, p4) ||
       PointOnSegment(p3, p1, p2) || PointOnSegment(p4, p1, p2) ||

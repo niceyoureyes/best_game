@@ -5,6 +5,7 @@
 class Box2D
 {
 public:
+  Box2D() = default;
   Box2D(Point2D const & p1, Point2D const & p2);
   Box2D(Box2D const & obj);
   Box2D(Box2D && obj);
@@ -16,6 +17,13 @@ public:
   bool IntersectBox(Box2D const & box);
   double DiagonalLength();
   bool PointInside(Point2D const & point);
+  void Move(Point2D const & point);
+  void SetWidth(double const value);
+  void SetHeight(double const value);
+  void SetSides(double const value);
+
+  double Width() const;
+  double Heigth() const;
 private:
   Point2D m_pointMin, m_pointMax;
 };

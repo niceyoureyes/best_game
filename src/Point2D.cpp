@@ -95,8 +95,9 @@ bool Point2D::operator != (const Point2D & obj) const
   return !(*this == obj);
 }
 
-Point2D Point2D::Norm() const
+Point2D Point2D::Normalize() const
 {
+  //TODO: exception
   return *this / this->Length();
 }
 

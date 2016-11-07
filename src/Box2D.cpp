@@ -62,6 +62,39 @@ bool Box2D::PointInside(Point2D const & point)
       this->PointMin().y() <= point.y() && point.y() <= this->PointMax().y();
 }
 
+void Box2D::Move(Point2D const & point)
+{
+  Point2D dp = m_pointMax - m_pointMin;
+  m_pointMin = point;
+  m_pointMax = point + dp;
+}
+
+void Box2D::SetWidth(double const value)
+{
+  m_pointMax.x() = this->PointMin().x() + value;
+}
+
+void Box2D::SetHeight(double const value)
+{
+  m_pointMax.y() = this->PointMin().y() + value;
+}
+
+void Box2D::SetSides(double const value)
+{
+  SetWidth(value);
+  SetHeight(value);
+}
+
+double Box2D::Width() const
+{
+  return m_pointMax.x() - m_pointMin.x();
+}
+
+double Box2D::Heigth() const
+{
+  return m_pointMax.y() - m_pointMin.y();
+}
+
 std::ostream & operator << (std::ostream & os, const Box2D & box)
 {
   os << box.PointMin() << " " << box.PointMax();

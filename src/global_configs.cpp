@@ -1,11 +1,12 @@
 #include "Global_configs.h"
 
-vector <Ammo> ammo_configs;
-vector <Weapon> weapon_configs;
+vector <TBullet> bulletConfigs;
+vector <TGun> gunConfigs;
+vector <TAlien> alienConfigs;
 
 void InitConfig()
 {
-  ammo_configs.push_back(Ammo{1, 10, 10});
-  ammo_configs.push_back(Ammo{2, 20, 9});
-  weapon_configs.push_back(Weapon{1, 1, 1, 1, 5});
+  bulletConfigs.push_back(TBullet{10, 10, 10, 1});
+  gunConfigs.push_back(TGun{1, 0});
+  alienConfigs.push_back(TAlien{100, 10, 50, 50, 0});
 }

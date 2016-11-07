@@ -6,14 +6,14 @@
 class Alien : public GameObject
 {
 public:
-  Alien(double hp, Ray2D orientation, double speed, int weapon_type, int ammo_type);
+  //Alien() = default;
+  Alien(Box2D const & box, Point2D const & direction, int const typeAlien);
+  Alien(Alien const & obj);
+  Alien operator = (Alien const & obj);
+  int const & TypeAlien() const;
   void Behavior();
   void Shot();
 private:
-  double m_hp;
-  Ray2D m_orientation;
-  double m_speed;
-
+  int m_typeAlien;
   Gun m_gun;
-  int m_count_ammo;
 };

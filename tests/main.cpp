@@ -60,7 +60,7 @@ TEST(TestPoints, test)
 
   d = e = Point2D  (3, 4);
   EXPECT_EQ(d.Length(), 5);
-  e = d.Norm();
+  e = d.Normalize();
   EXPECT_EQ(d.Length(), 5);
   EXPECT_EQ(e.x(), 3.0 / 5);
   EXPECT_EQ(e.y(), 4.0 / 5);

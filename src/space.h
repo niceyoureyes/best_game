@@ -3,5 +3,8 @@
 
 class Space : public GameObject
 {
+public:
+
+private:
 
 };

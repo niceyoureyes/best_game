@@ -26,7 +26,7 @@ public:
   bool operator == (Point2D const & obj) const;
   bool operator != (Point2D const & obj) const;
 
-  Point2D Norm() const; // returns normalized vector
+  Point2D Normalize() const; // returns normalized vector
   double Length() const;
 private:
   double m_x = 0, m_y = 0;
