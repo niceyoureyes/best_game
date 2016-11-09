@@ -43,10 +43,10 @@ Point2D const & Box2D::PointMax() const { return m_pointMax; }
 
 bool Box2D::IntersectBox(Box2D const & box)
 {
-  if (this->PointMax().x() < box.PointMin().x()) return 0;
-  if (this->PointMax().y() < box.PointMin().y()) return 0;
-  if (box.PointMax().x() < this->PointMin().x()) return 0;
-  if (box.PointMax().y() < this->PointMin().y()) return 0;
+  if (this->PointMax().x() < box.PointMin().x()) return false;
+  if (this->PointMax().y() < box.PointMin().y()) return false;
+  if (box.PointMax().x() < this->PointMin().x()) return false;
+  if (box.PointMax().y() < this->PointMin().y()) return false;
   return true;
 }
 

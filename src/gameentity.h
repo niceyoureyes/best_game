@@ -2,5 +2,6 @@
 
 class GameEntity
 {
-
+public:
+  virtual ~GameEntity() {}
 };
