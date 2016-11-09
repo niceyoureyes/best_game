@@ -47,7 +47,7 @@ bool Box2D::IntersectBox(Box2D const & box)
   if (this->PointMax().y() < box.PointMin().y()) return 0;
   if (box.PointMax().x() < this->PointMin().x()) return 0;
   if (box.PointMax().y() < this->PointMin().y()) return 0;
-  return 1;
+  return true;
 }
 
 double Box2D::DiagonalLength()

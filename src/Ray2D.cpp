@@ -1,5 +1,4 @@
 #include "Ray2D.h"
-#include "Geom_func.h"
 #include <iostream>
 
 Ray2D::Ray2D(Point2D const & origin, Point2D const & direction) : m_origin(origin), m_direction(direction)
@@ -36,11 +35,7 @@ Ray2D Ray2D::operator = (const Ray2D & obj)
   return *this;
 }
 
-//Point2D & Ray2D::origin() { return m_origin; }
-
 Point2D const & Ray2D::Origin() const { return m_origin; }
-
-//Point2D & Ray2D::direction() { return m_direction; }
 
 Point2D const & Ray2D::Direction() const { return m_direction; }
 
@@ -48,10 +43,10 @@ bool Ray2D::IntersectBox(Box2D const & box) const
 {
   //TODO: change 100000 to smth else
   auto p1 = this->Origin(), p2 = (this->Origin() + this->Direction() * 100000);
-  return SegmentsIntersection(p1, p2, box.PointMin(), Point2D(box.PointMin().x(), box.PointMax().y())) ||
-      SegmentsIntersection(p1, p2, box.PointMin(), Point2D(box.PointMax().x(), box.PointMin().y())) ||
-      SegmentsIntersection(p1, p2, box.PointMax(), Point2D(box.PointMin().x(), box.PointMax().y())) ||
-      SegmentsIntersection(p1, p2, box.PointMax(), Point2D(box.PointMax().x(), box.PointMin().y()));
+  return Point2D::SegmentsIntersection(p1, p2, box.PointMin(), Point2D(box.PointMin().x(), box.PointMax().y())) ||
+      Point2D::SegmentsIntersection(p1, p2, box.PointMin(), Point2D(box.PointMax().x(), box.PointMin().y())) ||
+      Point2D::SegmentsIntersection(p1, p2, box.PointMax(), Point2D(box.PointMin().x(), box.PointMax().y())) ||
+      Point2D::SegmentsIntersection(p1, p2, box.PointMax(), Point2D(box.PointMax().x(), box.PointMin().y()));
 }
 
 void Ray2D::DirectVector(Point2D const & p1, Point2D const & p2)

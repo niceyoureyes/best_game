@@ -12,9 +12,7 @@ public:
   Ray2D & operator = (Ray2D && obj);
   Ray2D operator = (Ray2D const & obj);
 
-  //Point2D & origin();
   Point2D const & Origin() const;
-  //Point2D & direction();
   Point2D const & Direction() const;
   bool IntersectBox(Box2D const & box) const;
   void DirectVector(Point2D const & p1, Point2D const & p2);

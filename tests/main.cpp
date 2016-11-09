@@ -1,6 +1,5 @@
 #include <iostream>
 #include <gtest/gtest.h>
-#include "Geom_func.h"
 #include "Point2D.h"
 #include "Box2D.h"
 #include "Ray2D.h"
@@ -139,6 +138,11 @@ TEST(CheckCrossRayBox, test)
 
   r = Ray2D(Point2D(-1, -2), Point2D(3.0000000001, 2));
   EXPECT_EQ(r.IntersectBox(B1), 1);
+}
+
+TEST(hierarchy, test)
+{
+
 }
 
 int main(int argc, char * argv[])

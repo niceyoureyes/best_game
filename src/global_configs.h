@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-using namespace std;
 class TBullet
 {
 public:
@@ -15,7 +14,7 @@ public:
   int rate; // per second
   int typeBullet;
 };
-class TAlien
+class TBeing
 {
 public: // TODO: type of behavior
   int hp;
@@ -23,11 +22,12 @@ public: // TODO: type of behavior
   int width;
   int height;
   int typeGun;
+  int ammo;
 };
 
 void InitConfig();
-vector <TBullet> extern bulletConfigs;
-vector <TGun> extern gunConfigs;
-vector <TAlien> extern alienConfigs;
+std::vector <TBullet> extern bulletConfigs;
+std::vector <TGun> extern gunConfigs;
+std::vector <TBeing> extern beingConfigs;
 
 

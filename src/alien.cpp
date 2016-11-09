@@ -3,29 +3,32 @@
 #include "Global_configs.h"
 #include "Box2D.h"
 
-Alien::Alien(Box2D const & box, Point2D const & direction, int const typeAlien): m_typeAlien(typeAlien)
+Alien::Alien(Box2D const & box, Point2D const & direction, int const typeBeing): m_typeBeing(typeBeing)
 {
   SetParameters(box, direction);
   Point2D point(Box().Width() / 2, Box().Width() / 2);
-  m_gun = Gun(Box2D(point, point), Direction(), alienConfigs[m_typeAlien].typeGun);
+  m_gun = Gun(Box2D(point, point), Direction(), beingConfigs[m_typeBeing].typeGun);
+  m_hp = beingConfigs[m_typeBeing].hp;
 }
 
 Alien::Alien(const Alien & obj)
 {
   SetParameters(obj.Box(), obj.Direction());
-  m_typeAlien = obj.TypeAlien();
+  m_typeBeing = obj.TypeBeing();
+  m_hp = beingConfigs[m_typeBeing].hp;
 }
 
 Alien Alien::operator = (const Alien & obj)
 {
   SetParameters(obj.Box(), obj.Direction());
-  m_typeAlien = obj.TypeAlien();
+  m_typeBeing = obj.TypeBeing();
+  m_hp = beingConfigs[m_typeBeing].hp;
   return *this;
 }
 
-int const & Alien::TypeAlien() const
+int const & Alien::TypeBeing() const
 {
-  return m_typeAlien;
+  return m_typeBeing;
 }
 
 void Alien::Behavior()

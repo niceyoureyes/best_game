@@ -106,8 +106,39 @@ double Point2D::Length() const
   return sqrt(x() * x() + y() * y());
 }
 
+Point2D Point2D::Vector(Point2D const & point) const
+{
+  return point - *this;
+}
+
 std::ostream & operator << (std::ostream & os, const Point2D & obj)
 {
   os << "Point2D{" << obj.x() << ", " << obj.y() << "}" << std::endl;
   return os;
+}
+
+double Point2D::DotProduct(Point2D const & p1, Point2D const & p2)
+{
+  return p1.x() * p2.x() + p1.y() * p2.y();
+}
+
+double Point2D::CrossProduct(Point2D const & p1, Point2D const & p2)
+{
+  return p1.x() * p2.y() - p1.y() * p2.x();
+}
+
+bool Point2D::PointOnSegment(Point2D const & p, Point2D const & a, Point2D const & b)
+{
+  return abs(CrossProduct(p.Vector(a), p.Vector(b))) < EPS  &&
+      DotProduct(p.Vector(a), p.Vector(b)) <= 0;
+}
+
+bool Point2D::SegmentsIntersection(Point2D const & p1, Point2D const & p2, Point2D const & p3, Point2D const & p4)
+{
+  return PointOnSegment(p1, p3, p4) || PointOnSegment(p2, p3, p4) ||
+      PointOnSegment(p3, p1, p2) || PointOnSegment(p4, p1, p2) ||
+      CrossProduct(p1.Vector(p2), p1.Vector(p3)) *
+      CrossProduct(p1.Vector(p2), p1.Vector(p4)) < 0 &&
+      CrossProduct(p3.Vector(p4), p3.Vector(p1)) *
+      CrossProduct(p3.Vector(p4), p3.Vector(p2)) < 0;
 }
