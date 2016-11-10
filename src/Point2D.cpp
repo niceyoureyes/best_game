@@ -1,6 +1,5 @@
 #include "Point2D.h"
 #include <cmath>
-#include <exception.h>
 
 Point2D::Point2D(const Point2D & obj) : m_x(obj.m_x), m_y(obj.m_y) {}
 
@@ -52,7 +51,7 @@ Point2D Point2D::operator * (const double & val) const
 Point2D Point2D::operator / (const double  & val) const
 {
   if(val == 0)
-    throw new Exception("error divide on zero!");
+    throw new std::invalid_argument("Error! Divizion by zero!");
   return Point2D(m_x / val, m_y / val);
 }
 
@@ -66,7 +65,7 @@ Point2D Point2D::operator *= (const double  & val)
 Point2D Point2D::operator /= (const double  & val)
 {
   if(val == 0)
-    throw new Exception("error divide on zero!");
+    throw new std::invalid_argument("Error! Divizion by zero!");
   m_x /= val;
   m_y /= val;
   return *this;
@@ -101,7 +100,7 @@ bool Point2D::operator != (const Point2D & obj) const
 Point2D Point2D::Normalize() const
 {
   if(this->Length() == 0)
-    throw new Exception("length vector is zero!");
+    throw new std::invalid_argument("Error! Vector length is zero!");
   return *this / this->Length();
 }
 
