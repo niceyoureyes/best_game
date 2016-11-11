@@ -6,6 +6,7 @@
 class Alien : public GameObject
 {
 public:
+  Alien() = default;
   Alien(Box2D const & box, Point2D const & direction, int const typeBeing);
   Alien(Alien const & obj);
   Alien operator = (Alien const & obj);

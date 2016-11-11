@@ -5,7 +5,7 @@
 class Bullet : public GameObject
 {
 public:
-  Bullet(Box2D const & box, Point2D const & direction, int const typeBullet, int owner);
+  Bullet(Box2D const & box, Point2D const & direction, int const typeBullet, int const owner);
   Bullet(Bullet const & obj);
   Bullet operator = (Bullet const & obj);
   int const & TypeBullet() const;

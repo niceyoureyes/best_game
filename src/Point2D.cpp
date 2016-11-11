@@ -51,7 +51,7 @@ Point2D Point2D::operator * (const double & val) const
 Point2D Point2D::operator / (const double  & val) const
 {
   if(val == 0)
-    throw new std::invalid_argument("Error! Divizion by zero!");
+    throw std::invalid_argument("Error! Divizion by zero!");
   return Point2D(m_x / val, m_y / val);
 }
 
@@ -65,7 +65,7 @@ Point2D Point2D::operator *= (const double  & val)
 Point2D Point2D::operator /= (const double  & val)
 {
   if(val == 0)
-    throw new std::invalid_argument("Error! Divizion by zero!");
+    throw std::invalid_argument("Error! Divizion by zero!");
   m_x /= val;
   m_y /= val;
   return *this;
@@ -100,7 +100,7 @@ bool Point2D::operator != (const Point2D & obj) const
 Point2D Point2D::Normalize() const
 {
   if(this->Length() == 0)
-    throw new std::invalid_argument("Error! Vector length is zero!");
+    throw std::invalid_argument("Error! Vector length is zero!");
   return *this / this->Length();
 }
 

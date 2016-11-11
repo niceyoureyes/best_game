@@ -3,6 +3,9 @@
 #include "Point2D.h"
 #include "Box2D.h"
 #include "Ray2D.h"
+#include "alien.h"
+#include "global_configs.h"
+#include "player.h"
 
 using namespace std;
 
@@ -140,9 +143,66 @@ TEST(CheckCrossRayBox, test)
   EXPECT_EQ(r.IntersectBox(B1), 1);
 }
 
+TEST(exceptionTest, test)
+{
+  Point2D a(0,0);
+  ASSERT_THROW(a.Normalize(), invalid_argument);
+  Point2D b(4, 8);
+  Point2D c(1, 1);
+  ASSERT_THROW(c = b / 0, invalid_argument);
+  ASSERT_THROW(c /= 0, invalid_argument);
+}
+
 TEST(hierarchy, test)
 {
+  InitConfig();
+  Box2D box1(400, 400, 600, 600);
+  Point2D dir1(0, 1);
+  Point2D dir2(1, 2);
+  Alien al(box1, dir1, 0);
+  Point2D place(1000, 1200);
 
+  EXPECT_EQ(al.Box().PointMin(), Point2D(400, 400));
+  EXPECT_EQ(al.Box().PointMax(), Point2D(600, 600));
+  EXPECT_EQ(al.Box(), box1);
+
+  EXPECT_EQ(al.Direction(), dir1);
+  EXPECT_EQ(al.TypeBeing(), 0);
+
+  al.Move(place);
+
+  EXPECT_EQ(al.Box().PointMin(), place);
+  EXPECT_EQ(al.Box().PointMax(), place + Point2D(200, 200));
+  EXPECT_EQ(al.Box(), Box2D(1000, 1200, 1200, 1400));
+
+  al.SetSides(100);
+
+  EXPECT_EQ(al.Box(), Box2D(1000, 1200, 1100, 1300));
+
+  al.SetParameters(box1, dir2);
+
+  EXPECT_EQ(al.Box(), box1);
+  EXPECT_EQ(al.Direction(), dir2.Normalize());
+
+  al.Direct(dir1 * 100);
+
+  EXPECT_EQ(al.Direction(), dir1);
+
+
+  Bullet bul1(box1, dir1, 0, 0);
+  EXPECT_EQ(bul1.Box(), box1);
+  EXPECT_EQ(bul1.Direction(), dir1);
+  EXPECT_EQ(bul1.TypeBullet(), 0);
+  EXPECT_EQ(bul1.Owner(), 0);
+
+  Gun gun1(box1, dir1, 0);
+  EXPECT_EQ(gun1.Box(), box1);
+  EXPECT_EQ(gun1.Direction(), dir1);
+  EXPECT_EQ(gun1.TypeGun(), 0);
+
+  Player pl1(box1, dir2, 0);
+  EXPECT_EQ(pl1.Box(), box1);
+  EXPECT_EQ(pl1.Direction(), dir2.Normalize());
 }
 
 int main(int argc, char * argv[])

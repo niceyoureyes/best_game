@@ -1,10 +1,10 @@
 #include "Bullet.h"
 using namespace std;
 
-Bullet::Bullet(Box2D const & box, Point2D const & direction, int const typeBullet, int owner):
+Bullet::Bullet(Box2D const & box, Point2D const & direction, int const typeBullet, int const owner):
   m_typeBullet(typeBullet), m_owner(owner)
 {
-  SetParameters(Box(), Direction());
+  SetParameters(box, direction);
 }
 
 Bullet::Bullet(const Bullet & obj)
