@@ -9,7 +9,7 @@ public:
   Gun() = default;
   Gun(Box2D const & box, Point2D const & direction, int const typeGun);
   Gun(Gun const & obj);
-  Gun operator = (Gun const & obj);
+  Gun & operator = (Gun const & obj);
 
   int const & TypeGun() const;
   Bullet Shot(Point2D const & alienPos);

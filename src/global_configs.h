@@ -26,8 +26,8 @@ public: // TODO: type of behavior
 };
 
 void InitConfig();
-std::vector <TBullet> extern bulletConfigs;
-std::vector <TGun> extern gunConfigs;
-std::vector <TBeing> extern beingConfigs;
+extern std::vector <TBullet> bulletConfigs;
+extern std::vector <TGun> gunConfigs;
+extern std::vector <TBeing> beingConfigs;
 
 

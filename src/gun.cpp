@@ -12,7 +12,7 @@ Gun::Gun(Gun const & obj)
   m_typeGun = obj.TypeGun();
 }
 
-Gun Gun::operator = (Gun const & obj)
+Gun & Gun::operator = (Gun const & obj)
 {
   SetParameters(obj.Box(), obj.Direction());
   m_typeGun = obj.TypeGun();
