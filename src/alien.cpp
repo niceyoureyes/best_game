@@ -2,6 +2,13 @@
 #include "Point2D.h"
 #include "Global_configs.h"
 #include "Box2D.h"
+#include "Logger.h"
+
+//std::ostream & operator << (std::ostream & os, const Alien & alien)
+//{
+//  os << "Alien";
+//  return os;
+//}
 
 Alien::Alien(Box2D const & box, Point2D const & direction, int const typeBeing): m_typeBeing(typeBeing)
 {
@@ -9,6 +16,7 @@ Alien::Alien(Box2D const & box, Point2D const & direction, int const typeBeing):
   Point2D point(box.Width() / 2, box.Width() / 2);
   m_gun = Gun(Box2D(point, point), direction, beingConfigs[m_typeBeing].typeGun);
   m_hp = beingConfigs[m_typeBeing].hp;
+  Logger::Instance() << "Constructor " << *this;
 }
 
 Alien::Alien(const Alien & obj)
@@ -16,6 +24,7 @@ Alien::Alien(const Alien & obj)
   SetParameters(obj.Box(), obj.Direction());
   m_typeBeing = obj.TypeBeing();
   m_hp = beingConfigs[m_typeBeing].hp;
+  Logger::Instance() << "Copy constructor " << *this;
 }
 
 Alien Alien::operator = (const Alien & obj)
@@ -23,6 +32,7 @@ Alien Alien::operator = (const Alien & obj)
   SetParameters(obj.Box(), obj.Direction());
   m_typeBeing = obj.TypeBeing();
   m_hp = beingConfigs[m_typeBeing].hp;
+  Logger::Instance() << "Copy operator " << *this;
   return *this;
 }
 

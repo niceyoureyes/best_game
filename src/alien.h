@@ -18,3 +18,4 @@ private:
   Gun m_gun;
   int m_hp;
 };
+//std::ostream & operator << (std::ostream & os, const Alien & alien);

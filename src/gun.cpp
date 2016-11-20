@@ -1,21 +1,30 @@
 #include "Gun.h"
 #include "Global_configs.h"
 
+//std::ostream & operator << (std::ostream & os, const Gun & gun)
+//{
+//  os << "Gun";
+//  return os;
+//}
+
 Gun::Gun(Box2D const & box, Point2D const & direction, int const typeGun): m_typeGun(typeGun)
 {
   SetParameters(box, direction);
+  Logger::Instance() << "Constructor " << *this;
 }
 
 Gun::Gun(Gun const & obj)
 {
   SetParameters(obj.Box(), obj.Direction());
   m_typeGun = obj.TypeGun();
+  Logger::Instance() << "Copy constructor " << *this;
 }
 
 Gun & Gun::operator = (Gun const & obj)
 {
   SetParameters(obj.Box(), obj.Direction());
   m_typeGun = obj.TypeGun();
+  Logger::Instance() << "Copy operator " << *this;
   return *this;
 }
 

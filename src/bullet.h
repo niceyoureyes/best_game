@@ -14,3 +14,4 @@ private:
   int m_typeBullet;
   int m_owner;
 };
+//std::ostream & operator << (std::ostream & os, const Bullet & bullet);

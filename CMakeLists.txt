@@ -7,6 +7,7 @@ set(SOURCE_ROOT src)
 # Scan source folder to find all sources and put the result to SRC_LIST.
 aux_source_directory(${SOURCE_ROOT} SRC_LIST)
 # Create executable by SRC_LIST.
+#add_subdirectory(src/geometry)
 add_executable(${PROJECT_NAME} ${SRC_LIST})
 
 # Add subdirectory with Google Test Library.

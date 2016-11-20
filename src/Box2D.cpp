@@ -21,7 +21,7 @@ Box2D::Box2D(Box2D && obj)
   std::swap(m_pointMax, obj.m_pointMax);
 }
 
-Box2D::Box2D(double p1x, double p1y, double p2x, double p2y)
+Box2D::Box2D(double const p1x, double const p1y, double const p2x, double const p2y)
 {
   m_pointMin.x() = std::min(p1x, p2x);
   m_pointMin.y() = std::min(p1y, p2y);
