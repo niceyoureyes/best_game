@@ -33,10 +33,10 @@ int const & Gun::TypeGun() const
   return m_typeGun;
 }
 
-Bullet Gun::Shot(Point2D const & alienPos)
+Bullet * Gun::Shot(Point2D const & alienPos)
 {
   int width = bulletConfigs[gunConfigs[m_typeGun].typeBullet].width;
   Point2D pwidth(width, width);
   Box2D box(alienPos + Box().PointMin() - pwidth / 2, alienPos + Box().PointMin() + pwidth / 2);
-  return Bullet(box, Direction(), gunConfigs[m_typeGun].typeBullet, 1);
+  return new Bullet(box, Direction(), gunConfigs[m_typeGun].typeBullet, 1);
 }

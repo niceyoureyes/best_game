@@ -12,7 +12,7 @@ public:
   Gun & operator = (Gun const & obj);
 
   int const & TypeGun() const;
-  Bullet Shot(Point2D const & alienPos);
+  Bullet * Shot(Point2D const & alienPos);
 private:
   int m_typeGun;
 };

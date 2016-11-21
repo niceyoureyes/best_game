@@ -6,6 +6,7 @@
 #include "alien.h"
 #include "global_configs.h"
 #include "player.h"
+#include "factory.h"
 
 using namespace std;
 
@@ -203,6 +204,14 @@ TEST(hierarchy, test)
   Player pl1(box1, dir2, 0);
   EXPECT_EQ(pl1.Box(), box1);
   EXPECT_EQ(pl1.Direction(), dir2.Normalize());
+}
+
+TEST(factory, test){
+  InitConfig();
+  Gun * gun = Factory::Create<Gun>(Box2D(100, 100, 200, 200), Point2D(0, 1), 0);
+  EXPECT_EQ(gun->Box(), Box2D(100, 100, 200, 200));
+  EXPECT_EQ(gun->Direction(), Point2D(0, 1));
+  EXPECT_EQ(gun->TypeGun(), 0);
 }
 
 int main(int argc, char * argv[])
