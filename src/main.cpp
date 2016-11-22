@@ -4,10 +4,13 @@
 #include "Ray2D.h"
 #include "alien.h"
 #include "global_configs.h"
+#include "memory"
 using namespace std;
 int main()
 {
-  InitConfig();
-  Alien al(Box2D(1, 1, 2, 2), Point2D(1, 1), 0);
+  std::unique_ptr<int> p(new int);
+  *p = 10;
+  cout << *p << endl;
+  cout << "Hello\n";
   return 0;
 }

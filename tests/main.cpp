@@ -208,7 +208,7 @@ TEST(hierarchy, test)
 
 TEST(factory, test){
   InitConfig();
-  Gun * gun = Factory::Create<Gun>(Box2D(100, 100, 200, 200), Point2D(0, 1), 0);
+  auto gun = Factory::Create<Gun>(Box2D(100, 100, 200, 200), Point2D(0, 1), 0);
   EXPECT_EQ(gun->Box(), Box2D(100, 100, 200, 200));
   EXPECT_EQ(gun->Direction(), Point2D(0, 1));
   EXPECT_EQ(gun->TypeGun(), 0);
@@ -217,8 +217,8 @@ TEST(factory, test){
 TEST(observer, test)
 {
   InitConfig();
-  Alien * al1 = Factory::Create<Alien>(Box2D(0, 0, 50, 50), Point2D(0, 1), 0);
-  Alien * al2 = Factory::Create<Alien>(Box2D(100, 0, 50, 50), Point2D(0, 1), 0);
+  auto al1 = Factory::Create<Alien>(Box2D(0, 0, 50, 50), Point2D(0, 1), 0);
+  auto al2 = Factory::Create<Alien>(Box2D(100, 0, 50, 50), Point2D(0, 1), 0);
   Alien::TOnHit * onHit = new Alien::TOnHit([] (int const typeBullet)
   {
     Logger::Instance() << "Bullet hit the alien with " << bulletConfigs[typeBullet].damage << " damage\n";
