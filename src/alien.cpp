@@ -4,12 +4,6 @@
 #include "Box2D.h"
 #include "Logger.h"
 
-//std::ostream & operator << (std::ostream & os, const Alien & alien)
-//{
-//  os << "Alien";
-//  return os;
-//}
-
 Alien::Alien(Box2D const & box, Point2D const & direction, int const typeBeing): m_typeBeing(typeBeing)
 {
   SetParameters(box, direction);

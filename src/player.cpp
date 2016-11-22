@@ -1,12 +1,6 @@
 #include "Player.h"
 #include "Global_configs.h"
 
-//std::ostream & operator << (std::ostream & os, const Player & player)
-//{
-//  os << "Player";
-//  return os;
-//}
-
 Player::Player(Box2D const & box, Point2D const & direction, int const typeBeing): m_typeBeing(typeBeing)
 {
   SetParameters(box, direction);

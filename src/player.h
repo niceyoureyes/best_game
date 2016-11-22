@@ -12,4 +12,3 @@ private:
   int m_hp;
   int m_ammo;
 };
-//std::ostream & operator << (std::ostream & os, const Player & player);

@@ -17,4 +17,3 @@ private:
   std::list <Bullet> m_bullets;
   std::list <Obstacle> m_obstacles;
 };
-//std::ostream & operator << (std::ostream & os, const Space & space);

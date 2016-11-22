@@ -8,6 +8,4 @@ public:
   {
     return new T(args...);
   }
-
-private:
 };

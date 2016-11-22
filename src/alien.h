@@ -22,4 +22,3 @@ private:
   int m_hp;
   TOnHit * m_onHit;
 };
-//std::ostream & operator << (std::ostream & os, const Alien & alien);

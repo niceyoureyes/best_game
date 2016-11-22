@@ -8,4 +8,3 @@ public:
 private:
 
 };
-//std::ostream & operator << (std::ostream & os, const Obstacle & obstacle);

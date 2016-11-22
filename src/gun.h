@@ -16,4 +16,3 @@ public:
 private:
   int m_typeGun;
 };
-//std::ostream & operator << (std::ostream & os, const Gun & gun);
