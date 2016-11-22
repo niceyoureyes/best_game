@@ -214,6 +214,21 @@ TEST(factory, test){
   EXPECT_EQ(gun->TypeGun(), 0);
 }
 
+TEST(observer, test)
+{
+  InitConfig();
+  Alien * al1 = Factory::Create<Alien>(Box2D(0, 0, 50, 50), Point2D(0, 1), 0);
+  Alien * al2 = Factory::Create<Alien>(Box2D(100, 0, 50, 50), Point2D(0, 1), 0);
+  Alien::TOnHit * onHit = new Alien::TOnHit([] (int const typeBullet)
+  {
+    Logger::Instance() << "Bullet hit the alien with " << bulletConfigs[typeBullet].damage << " damage\n";
+  });
+  al1->SetOnHit(onHit);
+  al2->SetOnHit(onHit);
+  al1->Hit(0);
+  al2->Hit(1);
+}
+
 int main(int argc, char * argv[])
 {
   ::testing::InitGoogleTest(&argc, argv);

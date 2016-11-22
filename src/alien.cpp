@@ -41,12 +41,18 @@ int const & Alien::TypeBeing() const
   return m_typeBeing;
 }
 
-void Alien::Behavior()
-{
-
-}
-
 void Alien::Shot()
 {
   m_gun.Shot(Box().PointMin());
+}
+
+void Alien::SetOnHit(Alien::TOnHit * const onHit)
+{
+  m_onHit = onHit;
+}
+
+void Alien::Hit(int const typeBullet)
+{
+  m_hp -= bulletConfigs[typeBullet].damage;
+  (*m_onHit)(typeBullet);
 }
