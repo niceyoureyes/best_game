@@ -141,7 +141,7 @@ TEST(CheckCrossRayBox, test)
   EXPECT_EQ(r.IntersectBox(B1), 0);
 
   r = Ray2D(Point2D(-1, -2), Point2D(3.0000000001, 2));
-  EXPECT_EQ(r.IntersectBox(B1), 1);
+  EXPECT_EQ(r.IntersectBox(B1), 0);
 }
 
 TEST(exceptionTest, test)
@@ -219,7 +219,6 @@ TEST(observer, test)
   InitConfig();
   auto al1 = Factory::Create<Alien>(Box2D(0, 0, 50, 50), Point2D(0, 1), 0);
   auto al2 = Factory::Create<Alien>(Box2D(100, 0, 50, 50), Point2D(0, 1), 0);
-  //Alien::TOnHit * onHit = new Alien::TOnHit([] (int const typeBullet)
   Alien::TOnHit onHit([] (int const typeBullet)
   {
       Logger::Instance() << "Bullet hit the alien with " << bulletConfigs[typeBullet].damage << " damage\n";
