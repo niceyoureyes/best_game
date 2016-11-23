@@ -11,7 +11,7 @@ public:
     Logger::Instance() << "Destructor " << *this;
   }
 
-  friend std::ostream & operator << (std::ostream & os, const GameEntity & obj)
+  friend std::ostream & operator << (std::ostream & os, GameEntity const & obj)
   {
     os << typeid(obj).name() << std::endl;
     return os;

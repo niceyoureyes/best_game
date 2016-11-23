@@ -26,7 +26,7 @@ Ray2D & Ray2D::operator = (Ray2D && obj)
   return *this;
 }
 
-Ray2D Ray2D::operator = (const Ray2D & obj)
+Ray2D Ray2D::operator = (Ray2D const & obj)
 {
   if (&obj == this)
     return *this;

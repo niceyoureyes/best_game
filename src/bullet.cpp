@@ -8,7 +8,7 @@ Bullet::Bullet(Box2D const & box, Point2D const & direction, int const typeBulle
   Logger::Instance() << "Constructor " << *this;
 }
 
-Bullet::Bullet(const Bullet & obj)
+Bullet::Bullet(Bullet const & obj)
 {
   SetParameters(obj.Box(), obj.Direction());
   m_typeBullet = obj.TypeBullet();
@@ -16,7 +16,7 @@ Bullet::Bullet(const Bullet & obj)
   Logger::Instance() << "Copy constructor " << *this;
 }
 
-Bullet Bullet::operator = (const Bullet & obj)
+Bullet Bullet::operator = (Bullet const & obj)
 {
   SetParameters(obj.Box(), obj.Direction());
   m_typeBullet = obj.TypeBullet();
@@ -25,12 +25,12 @@ Bullet Bullet::operator = (const Bullet & obj)
   return *this;
 }
 
- int const & Bullet::TypeBullet() const
- {
-   return m_typeBullet;
- }
+int const & Bullet::TypeBullet() const
+{
+  return m_typeBullet;
+}
 
- int const & Bullet::Owner() const
- {
-   return m_owner;
- }
+int const & Bullet::Owner() const
+{
+  return m_owner;
+}

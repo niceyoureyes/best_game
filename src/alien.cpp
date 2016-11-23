@@ -13,7 +13,7 @@ Alien::Alien(Box2D const & box, Point2D const & direction, int const typeBeing):
   Logger::Instance() << "Constructor " << *this;
 }
 
-Alien::Alien(const Alien & obj)
+Alien::Alien(Alien const & obj)
 {
   SetParameters(obj.Box(), obj.Direction());
   m_typeBeing = obj.TypeBeing();
@@ -21,7 +21,7 @@ Alien::Alien(const Alien & obj)
   Logger::Instance() << "Copy constructor " << *this;
 }
 
-Alien Alien::operator = (const Alien & obj)
+Alien Alien::operator = (Alien const & obj)
 {
   SetParameters(obj.Box(), obj.Direction());
   m_typeBeing = obj.TypeBeing();
@@ -40,13 +40,16 @@ void Alien::Shot()
   m_gun.Shot(Box().PointMin());
 }
 
-void Alien::SetOnHit(Alien::TOnHit * const onHit)
+void Alien::SetOnHit(Alien::TOnHit const & onHit)
 {
-  m_onHit = onHit;
+  *m_onHit = onHit;
 }
 
 void Alien::Hit(int const typeBullet)
 {
+  if (m_onHit != nullptr && (*m_onHit) != nullptr)
+  {
+    (*m_onHit)(typeBullet);
+  }
   m_hp -= bulletConfigs[typeBullet].damage;
-  (*m_onHit)(typeBullet);
 }

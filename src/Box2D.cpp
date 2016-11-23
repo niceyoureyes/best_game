@@ -36,7 +36,7 @@ Box2D & Box2D::operator = (Box2D && obj)
   return *this;
 }
 
-Box2D Box2D::operator = (const Box2D & obj)
+Box2D Box2D::operator = (Box2D const & obj)
 {
   if (&obj == this)
     return *this;
@@ -45,7 +45,7 @@ Box2D Box2D::operator = (const Box2D & obj)
   return *this;
 }
 
-bool Box2D::operator ==(const Box2D &obj) const
+bool Box2D::operator ==(Box2D const & obj) const
 {
   return obj.PointMin() == m_pointMin && obj.PointMax() == m_pointMax;
 }

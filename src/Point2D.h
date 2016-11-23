@@ -1,9 +1,9 @@
 #pragma once
 #include <iostream>
-#define EPS 0.000001
 class Point2D
 {
 public:
+  #define EPS 0.000001
   Point2D() = default;
   Point2D(Point2D const & obj);
   Point2D(Point2D && obj);

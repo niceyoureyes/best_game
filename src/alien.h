@@ -14,7 +14,7 @@ public:
   Alien operator = (Alien const & obj);
   int const & TypeBeing() const;
   void Shot();
-  void SetOnHit(TOnHit * const onHit);
+  void SetOnHit(TOnHit const & onHit);
   void Hit(int const typeBullet);
 private:
   int m_typeBeing;

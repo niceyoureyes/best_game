@@ -1,7 +1,7 @@
 #include "Point2D.h"
 #include <cmath>
 
-Point2D::Point2D(const Point2D & obj) : m_x(obj.m_x), m_y(obj.m_y) {}
+Point2D::Point2D(Point2D const & obj) : m_x(obj.m_x), m_y(obj.m_y) {}
 
 Point2D::Point2D(Point2D && obj)
 {
@@ -19,59 +19,59 @@ double const & Point2D::x() const { return m_x; }
 
 double const & Point2D::y() const { return m_y; }
 
-Point2D Point2D::operator + (const Point2D & obj) const
+Point2D Point2D::operator + (Point2D const & obj) const
 {
   return Point2D(m_x + obj.x(), m_y + obj.y());
 }
 
-Point2D Point2D::operator - (const Point2D & obj) const
+Point2D Point2D::operator - (Point2D const & obj) const
 {
   return Point2D(m_x - obj.x(), m_y - obj.y());
 }
 
-Point2D Point2D::operator += (const Point2D & obj)
+Point2D Point2D::operator += (Point2D const & obj)
 {
   m_x += obj.x();
   m_y += obj.y();
   return *this;
 }
 
-Point2D Point2D::operator -= (const Point2D & obj)
+Point2D Point2D::operator -= (Point2D const & obj)
 {
   m_x -= obj.x();
   m_y -= obj.y();
   return *this;
 }
 
-Point2D Point2D::operator * (const double & val) const
+Point2D Point2D::operator * (double const & val) const
 {
   return Point2D(m_x * val, m_y * val);
 }
 
-Point2D Point2D::operator / (const double  & val) const
+Point2D Point2D::operator / (double const & val) const
 {
-  if(val == 0)
+  if(fabs(val) < EPS)
     throw std::invalid_argument("Error! Divizion by zero!");
   return Point2D(m_x / val, m_y / val);
 }
 
-Point2D Point2D::operator *= (const double  & val)
+Point2D Point2D::operator *= (double const & val)
 {
   m_x *= val;
   m_y *= val;
   return *this;
 }
 
-Point2D Point2D::operator /= (const double  & val)
+Point2D Point2D::operator /= (double const & val)
 {
-  if(val == 0)
+  if(fabs(val) < EPS)
     throw std::invalid_argument("Error! Divizion by zero!");
   m_x /= val;
   m_y /= val;
   return *this;
 }
 
-Point2D Point2D::operator = (const Point2D & obj)
+Point2D Point2D::operator = (Point2D const & obj)
 {
   if (&obj == this)
     return * this;
@@ -87,19 +87,19 @@ Point2D & Point2D::operator = (Point2D && obj)
   return *this;
 }
 
-bool Point2D::operator == (const Point2D & obj) const
+bool Point2D::operator == (Point2D const & obj) const
 {
-  return (abs(m_x - obj.x()) < EPS) && (abs(m_y - obj.y()) < EPS);
+  return (fabs(m_x - obj.x()) < EPS) && (fabs(m_y - obj.y()) < EPS);
 }
 
-bool Point2D::operator != (const Point2D & obj) const
+bool Point2D::operator != (Point2D const & obj) const
 {
   return !(*this == obj);
 }
 
 Point2D Point2D::Normalize() const
 {
-  if(this->Length() == 0)
+  if(fabs(this->Length()) < EPS)
     throw std::invalid_argument("Error! Vector length is zero!");
   return *this / this->Length();
 }
@@ -114,7 +114,7 @@ Point2D Point2D::Vector(Point2D const & point) const
   return point - *this;
 }
 
-std::ostream & operator << (std::ostream & os, const Point2D & obj)
+std::ostream & operator << (std::ostream & os, Point2D const & obj)
 {
   os << "Point2D{" << obj.x() << ", " << obj.y() << "}" << std::endl;
   return os;
@@ -132,7 +132,7 @@ double Point2D::CrossProduct(Point2D const & p1, Point2D const & p2)
 
 bool Point2D::PointOnSegment(Point2D const & p, Point2D const & a, Point2D const & b)
 {
-  return abs(CrossProduct(p.Vector(a), p.Vector(b))) < EPS  &&
+  return fabs(CrossProduct(p.Vector(a), p.Vector(b))) < EPS  &&
       DotProduct(p.Vector(a), p.Vector(b)) <= 0;
 }
 
